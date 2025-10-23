@@ -121,4 +121,16 @@ class WorkshopController extends Controller
         $workshop->delete();
         return response()->json(['message' => 'Workshop deleted']);
     }
+
+    public function destroySelected(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'exists:workshops,id',
+        ]);
+
+        Workshop::whereIn('id', $request->ids)->delete();
+
+        return response()->json(['message' => 'Workshops deleted.']);
+    }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\WorkshopController;
+use App\Http\Controllers\Api\Owner\WorkshopOwnerController;
+use App\Http\Controllers\Api\Technician\WorkshopTechnicianController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,13 +30,13 @@ Route::prefix('workshops')->group(function () {
 
 Route::prefix('api/v1')->group(function () {
     Route::prefix('owner')->middleware('auth:sanctum')->group(function () {
-        Route::get('workshops', [Owner\WorkshopController::class, 'index']);
-        Route::post('workshops', [Owner\WorkshopController::class, 'store']);
-        Route::put('workshops/{id}', [Owner\WorkshopController::class, 'update']);
+        Route::get('workshops', [WorkshopOwnerController::class, 'index']);
+        Route::post('workshops', [WorkshopOwnerController::class, 'store']);
+        Route::put('workshops/{id}', [WorkshopOwnerController::class, 'update']);
     });
 
     Route::prefix('technician')->middleware('auth:sanctum')->group(function () {
-        Route::get('workshops/{id}', [Technician\WorkshopController::class, 'show']);
+        Route::get('workshops/{id}', [WorkshopTechnicianController::class, 'show']);
     });
 });
 
