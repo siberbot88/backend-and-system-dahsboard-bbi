@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Workshop extends Model
 {
-    use HasFactory,HasUlids;
+    use HasUlids;
     protected $fillable = [
         'code',
         'owner_id',
